@@ -1,0 +1,81 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+  <table>
+    <tr>
+      <th>Stat</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td colspan='2'>
+        <input v-model="charName" type='text' value='' placeholder='Enter Name'>
+      </td>
+    </tr>
+    <tr>
+      <td colspan='2'>
+        <select v-model='charRank'>
+          <option>Leader</option>
+          <option>Engineer</option>
+          <option>Fighter</option>
+          <option>Green</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Name: </td>
+      <td>{{ charName }}</td>
+    </tr>
+    <tr>
+      <td>Rank: </td>
+      <td>{{ charRank }}</td>
+    </tr>
+    <tr>
+      <td>M: </td>
+      <td>{{ charM }}</td>
+    </tr>
+    <tr>
+      <td>WS: </td>
+      <td>{{ charWS }}</td>
+    </tr>
+    <tr>
+      <td>BS: </td>
+      <td>{{ charBS }}</td>
+    </tr>
+    <tr>
+      <td>S: </td>
+      <td>{{ charS }}</td>
+    </tr>
+    <tr>
+      <td>T: </td>
+      <td>{{ charT }}</td>
+    </tr>
+    <tr>
+      <td>W: </td>
+      <td>{{ charW }}</td>
+    </tr>
+    <tr>
+      <td>I: </td>
+      <td>{{ charI }}</td>
+    </tr>
+    <tr>
+      <td>A: </td>
+      <td>{{ charA }}</td>
+    </tr>
+    <tr>
+      <td>Ld: </td>
+      <td>{{ charLd }}</td>
+    </tr>
+    <tr>
+      <td>Cost: </td>
+      <td>{{ charCost }}</td>
+    </tr>
+    <tr>
+      <td>Weight: </td>
+      <td>{{ charWeight }}</td>
+    </tr>
+    <tr>
+      <td>Carry Cap: </td>
+      <td>{{ charCarry }}</td>
+    </tr>
+  </table>
+</div>
