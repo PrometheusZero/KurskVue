@@ -1,8 +1,22 @@
-new Vue({
+var app1 = new Vue({
   el: '#app',
   data: {
     charName: '',
     charRank: ''
+  },
+  methods: {
+  	submit: function(){
+    	var data = {};
+      data.name = this.charName;
+      data.rank = this.charRank;
+      data.s = this.charS;
+      data.t = this.charT;
+      data.ws = this.charWS;
+      data.bs = this.charBS;
+      
+      charDB.push(data);
+      console.log(charDB);
+    }
   },
   computed: {
   	charS: function(){
@@ -130,3 +144,12 @@ new Vue({
 function d6(){
 	return Math.floor(Math.random() * 6) + 1;
 }
+
+var charDB = [];
+
+var app2 = new Vue({
+	el: '#app2',
+  data: {
+  	chars: charDB
+  }
+})
