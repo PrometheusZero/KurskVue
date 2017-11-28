@@ -77,5 +77,31 @@
       <td>Carry Cap: </td>
       <td>{{ charCarry }}</td>
     </tr>
+    <tr>
+      <td colspan='2'>
+        <input type='submit' v-on:click='submit' value='BUY'>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="app2">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Rank</th>
+      <th>S</th>
+      <th>T</th>
+      <th>WS</th>
+      <th>BS</th>
+    </tr>
+    <tr v-for="obj in chars">
+      <td>{{ obj.name }}</td>
+      <td>{{ obj.rank }}</td>
+      <td>{{ obj.s }}</td>
+      <td>{{ obj.t }}</td>
+      <td>{{ obj.ws }}</td>
+      <td>{{ obj.bs }}</td>
+    </tr>
   </table>
 </div>
