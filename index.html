@@ -1,6 +1,15 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Test</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
 <script src="https://unpkg.com/vue"></script>
 
-<div id="app">
+
+<div id="characterCreation">
   <table>
     <tr>
       <th>Stat</th>
@@ -85,23 +94,38 @@
   </table>
 </div>
 
-<div id="app2">
+<div id="characterRoster">
   <table>
     <tr>
       <th>Name</th>
       <th>Rank</th>
-      <th>S</th>
-      <th>T</th>
+      <th>M</th>
       <th>WS</th>
       <th>BS</th>
+      <th>S</th>
+      <th>T</th>
+      <th>W</th>
+      <th>I</th>
+      <th>A</th>
+      <th>Ld</th>
+      <th>Info</th>
     </tr>
     <tr v-for="obj in chars">
       <td>{{ obj.name }}</td>
       <td>{{ obj.rank }}</td>
-      <td>{{ obj.s }}</td>
-      <td>{{ obj.t }}</td>
+      <td>{{ obj.m() }}</td>
       <td>{{ obj.ws }}</td>
       <td>{{ obj.bs }}</td>
+      <td>{{ obj.s }}</td>
+      <td>{{ obj.t }}</td>
+      <td>{{ obj.w() }}</td>
+      <td>{{ obj.i }}</td>
+      <td>{{ obj.a() }}</td>
+      <td>{{ obj.ld }}</td>
+      <td><input type="button" value="..." v-on:click=""></td>
     </tr>
   </table>
 </div>
+
+<script src='app.js'></script>
+</body>

@@ -1,5 +1,97 @@
-var app1 = new Vue({
-  el: '#app',
+Vue.config.devtools = true;
+
+const charDB = [];
+
+function d6(){
+	return Math.floor(Math.random() * 6) + 1;
+}
+
+const character = {
+  movement: function(s, t){
+    return Math.ceil(Math.sqrt(s) + Math.sqrt(t));
+  },
+  wounds: function(i, ld){
+    return Math.ceil((i + ld)/20);
+  },
+  attack: function(ws, bs){
+    return Math.ceil((ws + bs)/40);
+  },
+  weight: function(s, t){
+    return (s*15)+(t*15)+30;
+  },
+  carry: function(s, t){
+    return (s*30)+(t*30)+30;
+  }
+};
+
+function characterConstructor(data){
+  const char = {};
+  char.name = data.name;
+  char.rank = data.rank;
+  char.ws = data.ws;
+  char.bs = data.bs;
+  char.s = data.s;
+  char.t = data.t;
+  char.i = data.i;
+  char.ld = data.ld
+  char.cost = data.cost;
+  char.xp = data.xp;
+  char.m = function(){return character.movement(this.s, this.t)};
+  char.w = function(){return character.wounds(this.i, this.ld)};
+  char.a = function(){return character.attack(this.ws, this.bs)};
+  char.weight = function(){return character.weight(this.s, this.t)};
+  char.carry = function(){return character.carry(this.s, this.t)};
+
+  char.inventory = [];
+  char.armourEquip;
+  char.sheildEquip;
+  char.leftHanded = data.handedness == "left" ? true : false;
+  char.rightHanded = data.handedness == "right" ? true : false;
+  char.leftHandEquip;
+  char.rightHandEquip;
+
+  char.inventoryWeight = function(){
+		var invWgt = 0;
+		for(let i=0;i<this.inventory.length;i++){
+			invWgt += this.inventory[i].totalWeight();
+		}
+		return invWgt;
+  };
+  
+  char.inventoryValue = function(){
+		var invValue = 0;
+		for(let i=0;i<this.inventory.length;i++){
+			invValue += this.inventory[i].totalCost();
+		}
+		return invValue;
+  };
+  
+  char.encumbrance = function(){
+		if(this.inventoryWeight() > this.carry()){
+			return (this.inventoryWeight() / this.carry());
+		}else{
+			return 1;
+		}
+  };
+  
+  char.totalMove = function(){
+    return this.m / this.encumbrance;
+  };
+
+  char.totalValue = function(){
+    return this.cost + this.inventoryValue;
+  };
+
+  char.totalWeight = function(){
+    return this.weight + this.inventoryWeight;
+  };
+
+  charDB.push(char);
+
+}
+
+const characterCreation = new Vue({
+  el: '#characterCreation',
   data: {
     charName: '',
     charRank: ''
@@ -9,13 +101,20 @@ var app1 = new Vue({
     	var data = {};
       data.name = this.charName;
       data.rank = this.charRank;
-      data.s = this.charS;
-      data.t = this.charT;
       data.ws = this.charWS;
       data.bs = this.charBS;
+      data.s = this.charS;
+      data.t = this.charT;
+      data.i = this.charI;
+      data.ld = this.charLd;
+      data.xp = this.charXP;
+      data.cost = this.charCost;
+      data.handedness = Math.random() > 0.9 ? "left" : "right";
       
-      charDB.push(data);
-      console.log(charDB);
+      characterConstructor(data);
+
+      this.charName = '';
+      this.charRank = '';
     }
   },
   computed: {
@@ -124,31 +223,25 @@ var app1 = new Vue({
      	}
     },
   	charM: function(){
-    	return Math.ceil(Math.sqrt(this.charS) + Math.sqrt(this.charT));
+    	return character.movement(this.charS, this.charT);
     },
     charW: function(){
-    	return Math.ceil((this.charI + this.charLd)/20);
+    	return character.wounds(this.charI, this.charLd);
     },
     charA: function(){
-    	return Math.ceil((this.charWS+this.charWS)/40);
+    	return character.attack(this.charWS, this.charBS);
     },
     charWeight: function(){
-    	return (this.charS*15)+(this.charT*15)+30;
+    	return character.weight(this.charS, this.charT);
     },
     charCarry: function(){
-    	return (this.charS*30)+(this.charT*30)+30;
+    	return character.carry(this.charS, this.charT);
     }
   }
 })
 
-function d6(){
-	return Math.floor(Math.random() * 6) + 1;
-}
-
-var charDB = [];
-
-var app2 = new Vue({
-	el: '#app2',
+const characterRoster = new Vue({
+	el: '#characterRoster',
   data: {
   	chars: charDB
   }
