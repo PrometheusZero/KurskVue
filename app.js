@@ -243,6 +243,65 @@ const characterCreation = new Vue({
 const characterRoster = new Vue({
 	el: '#characterRoster',
   data: {
-  	chars: charDB
+    chars: charDB,
+    detail: {
+      name: '',
+      rank: '',
+      m: '',
+      ws: '',
+      bs: '',
+      s: '',
+      t: '',
+      w: '',
+      i: '',
+      a: '',
+      ld: '',
+      xp: '',
+      carry: '',
+      inventoryWeight: '',
+      inventory: [],
+      inventoryValue: '',
+      armour: '',
+      sheild: '',
+      handedness: '',
+      leftHandEquip: '',
+      rightHandEquip: ''
+    }
+  },
+  methods: {
+    showDetails: function(obj){
+        this.detail.name = obj.name;
+        this.detail.rank = obj.rank;
+        this.detail.m = obj.m();
+        this.detail.ws = obj.ws;
+        this.detail.bs = obj.bs;
+        this.detail.s = obj.s;
+        this.detail.t = obj.t;
+        this.detail.w = obj.w();
+        this.detail.i = obj.i;
+        this.detail.a = obj.a();
+        this.detail.ld = obj.ld;
+        this.detail.xp = obj.xp;
+        this.detail.carry = obj.carry();
+        this.detail.inventoryWeight = obj.inventoryWeight();
+        this.detail.inventory = obj.inventory;
+        this.detail.inventoryValue = obj.inventoryValue();
+
+        this.detail.armour = obj.armourEquip ? obj.armourEquip.name : 'None';
+        this.detail.sheild = obj.sheildEquip ? obj.sheildEquip.name : 'None';
+
+        if(obj.leftHanded == false){
+          this.detail.handedness = 'Right';
+        }else if(obj.rightHanded == false){
+          this.detail.handedness = 'Left';
+        }else{
+          this.detail.handedness = 'Ambidextrous';
+        }
+
+        this.detail.leftHandEquip = obj.leftHandEquip ? obj.leftHandEquip.name : 'None';
+        this.detail.rightHandEquip = obj.rightHandEquip ? obj.rightHandEquip.name : 'None';
+
+
+    }
   }
 })

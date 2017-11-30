@@ -122,9 +122,86 @@
       <td>{{ obj.i }}</td>
       <td>{{ obj.a() }}</td>
       <td>{{ obj.ld }}</td>
-      <td><input type="button" value="..." v-on:click=""></td>
+      <td><input type="button" value="..." v-on:click="showDetails(obj)"></td>
     </tr>
   </table>
+
+  <div id="charInfoPanel">
+    <h2>{{ detail.name }}</h2>
+    <p>{{ detail.rank }}</p>
+    <table>
+      <tr>
+        <th>Stat</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>M</td>
+        <td>{{ detail.m }}</td>
+      </tr>
+      <tr>
+        <td>WS</td>
+        <td>{{ detail.ws }}</td>
+      </tr>
+      <tr>
+        <td>BS</td>
+        <td>{{ detail.bs }}</td>
+      </tr>
+      <tr>
+        <td>S</td>
+        <td>{{ detail.s }}</td>
+      </tr>
+      <tr>
+        <td>T</td>
+        <td>{{ detail.t }}</td>
+      </tr>
+      <tr>
+        <td>W</td>
+        <td>{{ detail.w }}</td>
+      </tr>
+      <tr>
+        <td>I</td>
+        <td>{{ detail.i }}</td>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>{{ detail.a }}</td>
+      </tr>
+      <tr>
+        <td>Ld</td>
+        <td>{{ detail.ld }}</td>
+      </tr>
+      <tr>
+        <td>XP</td>
+        <td>{{ detail.xp }}</td>
+      </tr>
+      <tr>
+        <td>Enc.</td>
+        <td>{{ detail.inventoryWeight }} / {{ detail.carry }}</td>
+      </tr>
+    </table>
+    <div id="dl-wrapper">
+      <dl>
+        <dt>Armour</dt>
+        <dd>{{ detail.armour }}</dd>
+      </dl>
+      <dl>
+        <dt>Sheild</dt>
+        <dd>{{ detail.sheild }}</dd>
+      </dl>
+      <dl>
+        <dt>Handedness</dt>
+        <dd>{{ detail.handedness }}</dd>
+      </dl>
+      <dl>
+        <dt>Left Equip</dt>
+        <dd>{{ detail.leftHandEquip }}</dd>
+      </dl>
+      <dl>
+        <dt>Right Equip</dt>
+        <dd>{{ detail.rightHandEquip }}</dd>
+      </dl>
+    </div>
+  </div>
 </div>
 
 <script src='app.js'></script>

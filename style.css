@@ -1,9 +1,19 @@
-div {
-  width:300px;
-  float:left;
+#characterCreation {
+    width: 30%;
+    float: left;
+}
+
+#characterCreation select {
+  width: 100%;
+}
+
+#characterRoster {
+  width: 70%;
+  float: left;
 }
 
 #characterRoster table {
+  display: inline-block;
   position: relative;
 }
 
@@ -22,13 +32,28 @@ div {
   text-decoration: none;
 }
 
-/* this is to turn a table row into a clickable element - useful for selecting out of the roster! */
-.rowlink::before {
-  content: "";
-  display: block;
-  position: absolute;
-  cursor: pointer;
-  left: 0;
-  width: 100%;
-  height: 1.5em;
+#charInfoPanel {
+  display: inline-block;
+  margin: 0 30px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: -2px 2px 2px #888888;
+}
+
+#charInfoPanel table {
+  display:inline-block;
+  margin: 20px;
+}
+
+#dl-wrapper {
+  display:inline-block;
+}
+
+#charInfoPanel dt {
+  font-weight: bold;
+}
+
+#charInfoPanel dd {
+  font-style: italic;
 }
