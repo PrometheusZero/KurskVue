@@ -8,200 +8,400 @@
 <body>
 <script src="https://unpkg.com/vue"></script>
 
+<div class="gridWrapper">
 
-<div id="characterCreation">
-  <table>
-    <tr>
-      <th>Stat</th>
-      <th>Value</th>
-    </tr>
-    <tr>
-      <td colspan='2'>
-        <input v-model="charName" type='text' value='' placeholder='Enter Name'>
-      </td>
-    </tr>
-    <tr>
-      <td colspan='2'>
-        <select v-model='charRank'>
-          <option>Leader</option>
-          <option>Engineer</option>
-          <option>Fighter</option>
-          <option>Green</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td>Name: </td>
-      <td>{{ charName }}</td>
-    </tr>
-    <tr>
-      <td>Rank: </td>
-      <td>{{ charRank }}</td>
-    </tr>
-    <tr>
-      <td>M: </td>
-      <td>{{ charM }}</td>
-    </tr>
-    <tr>
-      <td>WS: </td>
-      <td>{{ charWS }}</td>
-    </tr>
-    <tr>
-      <td>BS: </td>
-      <td>{{ charBS }}</td>
-    </tr>
-    <tr>
-      <td>S: </td>
-      <td>{{ charS }}</td>
-    </tr>
-    <tr>
-      <td>T: </td>
-      <td>{{ charT }}</td>
-    </tr>
-    <tr>
-      <td>W: </td>
-      <td>{{ charW }}</td>
-    </tr>
-    <tr>
-      <td>I: </td>
-      <td>{{ charI }}</td>
-    </tr>
-    <tr>
-      <td>A: </td>
-      <td>{{ charA }}</td>
-    </tr>
-    <tr>
-      <td>Ld: </td>
-      <td>{{ charLd }}</td>
-    </tr>
-    <tr>
-      <td>Cost: </td>
-      <td>{{ charCost }}</td>
-    </tr>
-    <tr>
-      <td>Weight: </td>
-      <td>{{ charWeight }}</td>
-    </tr>
-    <tr>
-      <td>Carry Cap: </td>
-      <td>{{ charCarry }}</td>
-    </tr>
-    <tr>
-      <td colspan='2'>
-        <input type='submit' v-on:click='submit' value='BUY'>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div id="characterRoster">
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Rank</th>
-      <th>M</th>
-      <th>WS</th>
-      <th>BS</th>
-      <th>S</th>
-      <th>T</th>
-      <th>W</th>
-      <th>I</th>
-      <th>A</th>
-      <th>Ld</th>
-      <th>Info</th>
-    </tr>
-    <tr v-for="obj in chars">
-      <td>{{ obj.name }}</td>
-      <td>{{ obj.rank }}</td>
-      <td>{{ obj.m() }}</td>
-      <td>{{ obj.ws }}</td>
-      <td>{{ obj.bs }}</td>
-      <td>{{ obj.s }}</td>
-      <td>{{ obj.t }}</td>
-      <td>{{ obj.w() }}</td>
-      <td>{{ obj.i }}</td>
-      <td>{{ obj.a() }}</td>
-      <td>{{ obj.ld }}</td>
-      <td><input type="button" value="..." v-on:click="showDetails(obj)"></td>
-    </tr>
-  </table>
-
-  <div id="charInfoPanel">
-    <h2>{{ detail.name }}</h2>
-    <p>{{ detail.rank }}</p>
+  <div id="characterCreation">
     <table>
       <tr>
         <th>Stat</th>
         <th>Value</th>
       </tr>
       <tr>
-        <td>M</td>
-        <td>{{ detail.m }}</td>
+        <td colspan='2'>
+          <input v-model="charName" type='text' value='' placeholder='Enter Name'>
+        </td>
       </tr>
       <tr>
-        <td>WS</td>
-        <td>{{ detail.ws }}</td>
+        <td colspan='2'>
+          <select v-model='charRank'>
+            <option>Leader</option>
+            <option>Engineer</option>
+            <option>Fighter</option>
+            <option>Green</option>
+          </select>
+        </td>
       </tr>
       <tr>
-        <td>BS</td>
-        <td>{{ detail.bs }}</td>
+        <td>Name: </td>
+        <td>{{ charName }}</td>
       </tr>
       <tr>
-        <td>S</td>
-        <td>{{ detail.s }}</td>
+        <td>Rank: </td>
+        <td>{{ charRank }}</td>
       </tr>
       <tr>
-        <td>T</td>
-        <td>{{ detail.t }}</td>
+        <td>M: </td>
+        <td>{{ charM }}</td>
       </tr>
       <tr>
-        <td>W</td>
-        <td>{{ detail.w }}</td>
+        <td>WS: </td>
+        <td>{{ charWS }}</td>
       </tr>
       <tr>
-        <td>I</td>
-        <td>{{ detail.i }}</td>
+        <td>BS: </td>
+        <td>{{ charBS }}</td>
       </tr>
       <tr>
-        <td>A</td>
-        <td>{{ detail.a }}</td>
+        <td>S: </td>
+        <td>{{ charS }}</td>
       </tr>
       <tr>
-        <td>Ld</td>
-        <td>{{ detail.ld }}</td>
+        <td>T: </td>
+        <td>{{ charT }}</td>
       </tr>
       <tr>
-        <td>XP</td>
-        <td>{{ detail.xp }}</td>
+        <td>W: </td>
+        <td>{{ charW }}</td>
       </tr>
       <tr>
-        <td>Enc.</td>
-        <td>{{ detail.inventoryWeight }} / {{ detail.carry }}</td>
+        <td>I: </td>
+        <td>{{ charI }}</td>
+      </tr>
+      <tr>
+        <td>A: </td>
+        <td>{{ charA }}</td>
+      </tr>
+      <tr>
+        <td>Ld: </td>
+        <td>{{ charLd }}</td>
+      </tr>
+      <tr>
+        <td>Cost: </td>
+        <td>{{ charCost }}</td>
+      </tr>
+      <tr>
+        <td>Weight: </td>
+        <td>{{ charWeight }}</td>
+      </tr>
+      <tr>
+        <td>Carry Cap: </td>
+        <td>{{ charCarry }}</td>
+      </tr>
+      <tr>
+        <td colspan='2'>
+          <input type='submit' v-on:click='submit' value='BUY'>
+        </td>
       </tr>
     </table>
-    <div id="dl-wrapper">
-      <dl>
-        <dt>Armour</dt>
-        <dd>{{ detail.armour }}</dd>
-      </dl>
-      <dl>
-        <dt>Sheild</dt>
-        <dd>{{ detail.sheild }}</dd>
-      </dl>
-      <dl>
-        <dt>Handedness</dt>
-        <dd>{{ detail.handedness }}</dd>
-      </dl>
-      <dl>
-        <dt>Left Equip</dt>
-        <dd>{{ detail.leftHandEquip }}</dd>
-      </dl>
-      <dl>
-        <dt>Right Equip</dt>
-        <dd>{{ detail.rightHandEquip }}</dd>
-      </dl>
+  </div>
+
+  <div id="characterRoster">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Rank</th>
+        <th>M</th>
+        <th>WS</th>
+        <th>BS</th>
+        <th>S</th>
+        <th>T</th>
+        <th>W</th>
+        <th>I</th>
+        <th>A</th>
+        <th>Ld</th>
+        <th>Info</th>
+      </tr>
+      <tr v-for="obj in chars">
+        <td>{{ obj.name }}</td>
+        <td>{{ obj.rank }}</td>
+        <td>{{ obj.m() }}</td>
+        <td>{{ obj.ws }}</td>
+        <td>{{ obj.bs }}</td>
+        <td>{{ obj.s }}</td>
+        <td>{{ obj.t }}</td>
+        <td>{{ obj.w() }}</td>
+        <td>{{ obj.i }}</td>
+        <td>{{ obj.a() }}</td>
+        <td>{{ obj.ld }}</td>
+        <td><input type="button" value="..." v-on:click="showDetails(obj)"></td>
+      </tr>
+    </table>
+
+    <div id="charInfoPanel">
+      <h2>{{ detail.name }}</h2>
+      <p>{{ detail.rank }}</p>
+      <table>
+        <tr>
+          <th>Stat</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>M</td>
+          <td>{{ detail.m }}</td>
+        </tr>
+        <tr>
+          <td>WS</td>
+          <td>{{ detail.ws }}</td>
+        </tr>
+        <tr>
+          <td>BS</td>
+          <td>{{ detail.bs }}</td>
+        </tr>
+        <tr>
+          <td>S</td>
+          <td>{{ detail.s }}</td>
+        </tr>
+        <tr>
+          <td>T</td>
+          <td>{{ detail.t }}</td>
+        </tr>
+        <tr>
+          <td>W</td>
+          <td>{{ detail.w }}</td>
+        </tr>
+        <tr>
+          <td>I</td>
+          <td>{{ detail.i }}</td>
+        </tr>
+        <tr>
+          <td>A</td>
+          <td>{{ detail.a }}</td>
+        </tr>
+        <tr>
+          <td>Ld</td>
+          <td>{{ detail.ld }}</td>
+        </tr>
+        <tr>
+          <td>XP</td>
+          <td>{{ detail.xp }}</td>
+        </tr>
+        <tr>
+          <td>Enc.</td>
+          <td>{{ detail.inventoryWeight }} / {{ detail.carry }}</td>
+        </tr>
+      </table>
+      <div id="dl-wrapper">
+        <dl>
+          <dt>Armour</dt>
+          <dd>{{ detail.armour }}</dd>
+        </dl>
+        <dl>
+          <dt>Sheild</dt>
+          <dd>{{ detail.sheild }}</dd>
+        </dl>
+        <dl>
+          <dt>Handedness</dt>
+          <dd>{{ detail.handedness }}</dd>
+        </dl>
+        <dl>
+          <dt>Left Equip</dt>
+          <dd>{{ detail.leftHandEquip }}</dd>
+        </dl>
+        <dl>
+          <dt>Right Equip</dt>
+          <dd>{{ detail.rightHandEquip }}</dd>
+        </dl>
+      </div>
     </div>
   </div>
+
+  <div id="weaponCreation">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">CUSTOM GENERATE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Data</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Name: </td>
+          <td><input v-model="name" class="textInput" type="text" value="" placeholder="Enter Name"></input></td>
+        </tr>
+        <tr>
+          <td>Type: </td>
+          <td>
+            <select v-model="type">
+              <option value="e">Energy</option>
+              <option value="p">Projectile</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Strength:</td>
+          <td>
+            <select v-model.number="str">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Die 1: </td>
+          <td>
+            <select v-model.number="die1">
+              <option>2</option>
+              <option>4</option>
+              <option>6</option>
+              <option>8</option>
+              <option>10</option>
+              <option>12</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Die 2: </td>
+          <td>
+            <select v-model.number="die2">
+              <option>2</option>
+              <option>4</option>
+              <option>6</option>
+              <option>8</option>
+              <option>10</option>
+              <option>12</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Range: </td>
+          <td>
+            <select v-model.number="range">
+              <option>6</option>
+              <option>12</option>
+              <option>18</option>
+              <option>24</option>
+              <option>30</option>
+              <option>36</option>
+              <option>48</option>
+              <option>60</option>
+              <option>72</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Acc &#37;: </td>
+          <td>
+            <select v-model.number="accX">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+            <td>Acc / in: </td>
+            <td>
+              <select v-model.number="accY">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>RoF: </td>
+            <td>
+              <select v-model="rof">
+                <option>Single</option>
+                <option>1 Fire Dice</option>
+                <option>2 Fire Dice</option>
+                <option>3 Fire Dice</option>
+                <option>4 Fire Dice</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Blast: </td>
+            <td>
+              <select v-model="blast">
+                  <option>None</option>
+                  <option>1" Blast</option>
+                  <option>2" Blast</option>
+                  <option>3" Blast</option>
+                  <option>4" Blast</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Size: </td>
+            <td>
+              <select v-model="size">
+                <option>Ordnance</option>
+                <option>Heavy</option>
+                <option>Basic</option>
+                <option>Pistol</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Delay: </td>
+            <td>
+              <select v-model="delay">
+                <option>None</option>
+                <option>Partial</option>
+                <option>Full</option>
+                <option>One Shot</option>
+              </select>
+            </td>
+          </tr>
+          <tr v-if="isOrd">
+            <td>Ord Rating: </td>
+            <td>
+              <select v-model.number="ordRating">
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Weight Mod: </td>
+            <td>
+              <select v-model.number="weight">
+                <option>0.25</option>
+                <option>0.33</option>
+                <option>0.5</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td v-if="warning">TOO HEAVY</td>
+            <td>
+              <input v-on:click="generate" type="button" value="GO">
+              <input v-on:click="buy" type="button" value="BUY">
+            </td>
+          </tr>
+          <tr>
+            <td>Total Cost: </td>
+            <td>{{ totalCost }}</td>
+          </tr>
+          <tr>
+            <td>Total Weight: </td>
+            <td>{{ totalWeight }}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
 <script src='app.js'></script>

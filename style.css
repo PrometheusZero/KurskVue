@@ -1,6 +1,14 @@
+.gridWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+
 #characterCreation {
-    width: 30%;
-    float: left;
+    grid-column:1;
+    grid-row:1;
 }
 
 #characterCreation select {
@@ -8,8 +16,8 @@
 }
 
 #characterRoster {
-  width: 70%;
-  float: left;
+  grid-column: 2 / 4;
+  grid-row:1;
 }
 
 #characterRoster table {
@@ -56,4 +64,9 @@
 
 #charInfoPanel dd {
   font-style: italic;
+}
+
+#weaponCreation {
+  grid-column:1;
+  grid-row:2;
 }

@@ -2,6 +2,8 @@ Vue.config.devtools = true;
 
 const charDB = [];
 
+const wpnDB = [];
+
 function d6(){
 	return Math.floor(Math.random() * 6) + 1;
 }
@@ -304,4 +306,14 @@ const characterRoster = new Vue({
 
     }
   }
+})
+
+
+const weaponCreation = new Vue({
+  el: '#weaponCreation',
+  data: {
+    wpnName: '',
+    wpnType: ''
+  },
+
 })
