@@ -180,7 +180,7 @@
           <tr>
             <td v-if="warning">TOO HEAVY</td>
             <td>
-              <input v-on:click="buy" type="button" value="BUY">
+              <input v-on:click="buy()" type="button" value="BUY">
             </td>
           </tr>
           <tr>
@@ -198,13 +198,13 @@
     <table>
       <thead>
         <tr>
-          <th>Pre-selectors</th>
+          <th>PRE-SELECTORS</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            <select v-model="selectorType">
+            <select v-model="selectorType" v-on:change="selectorChange()">
               <option>Pistol</option>
               <option>Basic</option>
               <option>Heavy</option>
@@ -214,35 +214,35 @@
         </tr>
         <tr>
           <td>
-            <select v-if="selectorType === 'Pistol'">
-              <option>pistol1</option>
-              <option>pistol2</option>
-              <option>pistol3</option>
-              <option>option4</option>
+            <select v-model="selectorPistol" v-if="selectorType === 'Pistol'" v-on:change="selectorChange()">
+              <option>Laspistol</option>
+              <option>Bolt Pistol</option>
+              <option>Stub Gun</option>
+              <option>Plasma Pistol</option>
             </select>
-            <select v-if="selectorType === 'Basic'">
-              <option>basic1</option>
-              <option>basic2</option>
-              <option>basic3</option>
-              <option>basic4</option>
+            <select v-model="selectorBasic" v-if="selectorType === 'Basic'" v-on:change="selectorChange()">
+              <option>Lasgun</option>
+              <option>Boltgun</option>
+              <option>Autogun</option>
+              <option>Plasma Gun</option>
             </select>  
-            <select v-if="selectorType === 'Heavy'">
-              <option>heavy1</option>
-              <option>heavy2</option>
-              <option>heavy3</option>
-              <option>heavy4</option>
+            <select v-model="selectorHeavy" v-if="selectorType === 'Heavy'" v-on:change="selectorChange()">
+              <option>Lascannon</option>
+              <option>Heavy Bolter</option>
+              <option>Heavy Stubber</option>
+              <option>Plasma Cannon</option>
             </select>  
-            <select v-if="selectorType === 'Ordnance'">
-              <option>ord1</option>
-              <option>ord2</option>
-              <option>ord3</option>
-              <option>ord4</option>
+            <select v-model="selectorOrdnance" v-if="selectorType === 'Ordnance'" v-on:change="selectorChange()">
+              <option>Battlecannon</option>
+              <option>Punisher Gatling</option>
+              <option>Nova Blaster</option>
+              <option>Plasma Executioner</option>
             </select>  
           </td>          
         </tr>
         <tr>
           <td>
-            <select v-model="selectorQuality">
+            <select v-model="selectorQuality" v-on:change="selectorChange()">
               <option>Poor</option>
               <option>Ordinary</option>
               <option>Fine</option>
@@ -295,11 +295,823 @@ export default {
         weightMult: 1,
         totalWeight: 25,
         selectorType: 'Basic',
-        selectorQuality: 'Ordinary'
+        selectorQuality: 'Ordinary',
+        selectorPistol: 'Laspistol',
+        selectorBasic: 'Lasgun',
+        selectorHeavy: 'Lascannon',
+        selectorOrdnance: 'Battlecannon'
     }
   },
   methods: {
-    
+    selectorChange: function(){
+      if(this.selectorType === 'Pistol'){
+        
+        if(this.selectorPistol === 'Laspistol'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Laspistol';
+            this.type = 'e';
+            this.stren = 3;
+            this.die1 = 2;
+            this.die2 = 4;
+            this.range = 12;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Laspistol';
+            this.type = 'e';
+            this.stren = 3;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 12;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Laspistol';
+            this.type = 'e';
+            this.stren = 3;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 18;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+        
+        }else if(this.selectorPistol === 'Bolt Pistol'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Bolt Pistol';
+            this.type = 'p';
+            this.stren = 4;
+            this.die1 = 4;
+            this.die2 = 6;
+            this.range = 12;
+            this.accX = 3;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Bolt Pistol';
+            this.type = 'p';
+            this.stren = 4;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 12;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Bolt Pistol';
+            this.type = 'p';
+            this.stren = 4;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 12;
+            this.accX = 1;
+            this.accY = 2;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+
+        }else if(this.selectorPistol === 'Stub Gun'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Stub Gun';
+            this.type = 'p';
+            this.stren = 3;
+            this.die1 = 2;
+            this.die2 = 2;
+            this.range = 12;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Stub Gun';
+            this.type = 'p';
+            this.stren = 3;
+            this.die1 = 2;
+            this.die2 = 4;
+            this.range = 12;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Stub Gun';
+            this.type = 'p';
+            this.stren = 3;
+            this.die1 = 2;
+            this.die2 = 4;
+            this.range = 12;
+            this.accX = 1;
+            this.accY = 3;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+
+        }else if(this.selectorPistol === 'Plasma Pistol'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Plasma Pistol';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 4;
+            this.die2 = 6;
+            this.range = 6;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = '1 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'Full';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Plasma Pistol';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 12;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = '1 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'Full';
+            this.ordRating = 2;
+            this.weightMod = 0.5;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Plasma Pistol';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 18;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = '1 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Pistol';
+            this.delay = 'Partial';
+            this.ordRating = 2;
+            this.weightMod = 0.5;
+          }
+        
+        }
+
+      }else if(this.selectorType === 'Basic'){
+
+        if(this.selectorBasic === 'Lasgun'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Lasgun';
+            this.type = 'e';
+            this.stren = 3;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 24;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 2;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Lasgun';
+            this.type = 'e';
+            this.stren = 3;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 24;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Lasgun';
+            this.type = 'e';
+            this.stren = 3;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 36;
+            this.accX = 1;
+            this.accY = 2;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+        
+        }else if(this.selectorBasic === 'Boltgun'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Boltgun';
+            this.type = 'p';
+            this.stren = 4;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 24;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Boltgun';
+            this.type = 'p';
+            this.stren = 4;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 24;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Boltgun';
+            this.type = 'p';
+            this.stren = 4;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 30;
+            this.accX = 1;
+            this.accY = 2;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+
+        }else if(this.selectorBasic === 'Autogun'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Autogun';
+            this.type = 'p';
+            this.stren = 3;
+            this.die1 = 2;
+            this.die2 = 2;
+            this.range = 24;
+            this.accX = 3;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Autogun';
+            this.type = 'p';
+            this.stren = 3;
+            this.die1 = 4;
+            this.die2 = 2;
+            this.range = 24;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Autogun';
+            this.type = 'p';
+            this.stren = 3;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 24;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = '1 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+
+        }else if(this.selectorBasic === 'Plasma Gun'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Plasma Gun';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 24;
+            this.accX = 4;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'Full';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Plasma Gun';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 24;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = '1 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'Full';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Plasma Gun';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 24;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = '1 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Basic';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+        
+        }
+
+      }else if(this.selectorType === 'Heavy'){
+
+        if(this.selectorHeavy === 'Lascannon'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Lascannon';
+            this.type = 'e';
+            this.stren = 9;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 48;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 2;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Lascannon';
+            this.type = 'e';
+            this.stren = 9;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 48;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Lascannon';
+            this.type = 'e';
+            this.stren = 9;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 48;
+            this.accX = 1;
+            this.accY = 2;
+            this.rof = 'Single';
+            this.blast = 'None';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+        
+        }else if(this.selectorHeavy === 'Heavy Bolter'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Heavy Bolter';
+            this.type = 'p';
+            this.stren = 5;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 36;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = '2 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 2;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Heavy Bolter';
+            this.type = 'p';
+            this.stren = 5;
+            this.die1 = 8;
+            this.die2 = 6;
+            this.range = 36;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = '2 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Heavy Bolter';
+            this.type = 'p';
+            this.stren = 5;
+            this.die1 = 8;
+            this.die2 = 6;
+            this.range = 48;
+            this.accX = 1;
+            this.accY = 2;
+            this.rof = '2 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+
+        }else if(this.selectorHeavy === 'Heavy Stubber'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Heavy Stubber';
+            this.type = 'p';
+            this.stren = 4;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 24;
+            this.accX = 3;
+            this.accY = 1;
+            this.rof = '2 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 2;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Heavy Stubber';
+            this.type = 'p';
+            this.stren = 4;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 24;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = '3 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Heavy Stubber';
+            this.type = 'p';
+            this.stren = 4;
+            this.die1 = 4;
+            this.die2 = 4;
+            this.range = 36;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = '3 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+
+        }else if(this.selectorHeavy === 'Plasma Cannon'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Plasma Cannon';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 36;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = '2" Blast';
+            this.size = 'Heavy';
+            this.delay = 'Full';
+            this.ordRating = 2;
+            this.weightMod = 2;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Plasma Cannon';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 36;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = '2" Blast';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Plasma Cannon';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 48;
+            this.accX = 1;
+            this.accY = 2;
+            this.rof = 'Single';
+            this.blast = '2" Blast';
+            this.size = 'Heavy';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+        
+        }
+
+      }else if(this.selectorType === 'Ordnance'){
+
+        if(this.selectorOrdnance === 'Battlecannon'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Battlecannon';
+            this.type = 'p';
+            this.stren = 8;
+            this.die1 = 8;
+            this.die2 = 6;
+            this.range = 72;
+            this.accX = 3;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = '2" Blast';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 4;
+            this.weightMod = 2;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Battlecannon';
+            this.type = 'p';
+            this.stren = 8;
+            this.die1 = 8;
+            this.die2 = 8;
+            this.range = 72;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = '2" Blast';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Battlecannon';
+            this.type = 'p';
+            this.stren = 8;
+            this.die1 = 8;
+            this.die2 = 8;
+            this.range = 72;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = '2" Blast';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+        
+        }else if(this.selectorOrdnance === 'Punisher Gatling'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Punisher Gatling';
+            this.type = 'p';
+            this.stren = 6;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 24;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = '3 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 2;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Punisher Gatling';
+            this.type = 'p';
+            this.stren = 6;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 36;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = '3 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Punisher Gatling';
+            this.type = 'p';
+            this.stren = 6;
+            this.die1 = 6;
+            this.die2 = 6;
+            this.range = 48;
+            this.accX = 1;
+            this.accY = 2;
+            this.rof = '3 Fire Dice';
+            this.blast = 'None';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+
+        }else if(this.selectorOrdnance === 'Nova Blaster'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Nova Blaster';
+            this.type = 'e';
+            this.stren = 6;
+            this.die1 = 10;
+            this.die2 = 10;
+            this.range = 48;
+            this.accX = 3;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = '2" Blast';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 3;
+            this.weightMod = 2;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Nova Blaster';
+            this.type = 'e';
+            this.stren = 6;
+            this.die1 = 10;
+            this.die2 = 10;
+            this.range = 48;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = '2" Blast';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Nova Blaster';
+            this.type = 'e';
+            this.stren = 6;
+            this.die1 = 12;
+            this.die2 = 10;
+            this.range = 48;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = 'Single';
+            this.blast = '2" Blast';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+
+        }else if(this.selectorOrdnance === 'Plasma Executioner'){
+          if(this.selectorQuality === 'Poor'){
+            this.name = 'Poor Plasma Executioner';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 8;
+            this.die2 = 6;
+            this.range = 36;
+            this.accX = 2;
+            this.accY = 1;
+            this.rof = '1 Fire Dice';
+            this.blast = '1" Blast';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 2;
+          }else if(this.selectorQuality === 'Ordinary'){
+            this.name = 'Plasma Executioner';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 8;
+            this.die2 = 8;
+            this.range = 36;
+            this.accX = 1;
+            this.accY = 1;
+            this.rof = '1 Fire Dice';
+            this.blast = '1" Blast';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }else if(this.selectorQuality === 'Fine'){
+            this.name = 'Fine Plasma Executioner';
+            this.type = 'e';
+            this.stren = 7;
+            this.die1 = 8;
+            this.die2 = 8;
+            this.range = 48;
+            this.accX = 1;
+            this.accY = 2;
+            this.rof = '1 Fire Dice';
+            this.blast = '1" Blast';
+            this.size = 'Ordnance';
+            this.delay = 'None';
+            this.ordRating = 2;
+            this.weightMod = 1;
+          }
+        
+        }
+
+      }
+    },
+    buy: function(){
+      const obj = {};
+      obj.name = this.name;
+      obj.size = this.size;
+      obj.type = this.type;
+      obj.stren = this.stren;
+      obj.die1 = this.die1;
+      obj.die2 = this.die2;
+      obj.range = this.range;
+      obj.accX = this.accX;
+      obj.accY = this.accY;
+      obj.rof = this.rof;
+      obj.blast = this.blast;
+      obj.delay = this.delay;
+      obj.ordRating = this.ordRating;
+      obj.totalCost = this.totalCost;
+      obj.totalWeight = this.totalWeight;
+      obj.owned = false;
+      obj.owner;
+
+      this.gang.weapons.push(obj);
+    }
   },
   computed: {
     calculateCost: function(){
@@ -352,13 +1164,13 @@ export default {
 
         this.ordMult = Math.sqrt(2/this.ordRating);
 
-        if(this.delay = 'None'){
+        if(this.delay === 'None'){
           this.delayMult = 1;
-        }else if(this.delay = 'Partial'){
+        }else if(this.delay === 'Partial'){
           this.delayMult = 0.85;
-        }else if(this.delay = 'Full'){
-          this.delayMult = 0.5;
-        }else if(this.delay = 'One Shot'){
+        }else if(this.delay === 'Full'){
+          this.delayMult = 0.666;
+        }else if(this.delay === 'One Shot'){
           this.delayMult = 0.125;
         }
 
@@ -369,16 +1181,16 @@ export default {
         this.weightMult = this.rofMult * this.blastMult * this.rangeMult * this.accMult * (1/this.ordMult);
 
         if(this.size === 'Pistol'){
-          this.totalWeight = Math.ceil((this.basicValue+(this.weightMult*100))*this.weightMod/10)*5;
+          this.totalWeight = Math.ceil((this.basicValue+(this.weightMult*100))*this.weightMod/50)*5;
         }else if(this.size === 'Basic'){
-          this.totalWeight = Math.ceil((this.basicValue+(this.weightMult*150))*this.weightMod/20)*5;
+          this.totalWeight = Math.ceil((this.basicValue+(this.weightMult*150))*this.weightMod/40)*5;
         }else if(this.size === 'Heavy'){
-          this.totalWeight = Math.ceil((this.basicValue+(this.weightMult*200))*this.weightMod/40)*5;
+          this.totalWeight = Math.ceil((this.basicValue+(this.weightMult*200))*this.weightMod/20)*5;
         }else if(this.size === 'Ordnance'){
-          this.totalWeight = Math.ceil((this.basicValue+(this.weightMult*250))*this.weightMod/50)*5;
+          this.totalWeight = Math.ceil((this.basicValue+(this.weightMult*250))*this.weightMod/10)*5;
         }
 
-        return this.basicValue * this.overallMult;
+        return Math.round(this.basicValue * this.overallMult);
 
     },
     isOrd: function(){
@@ -387,10 +1199,7 @@ export default {
         }else{
             return false;
         }  
-    },
-    buy: function(){
-        return true;
-    },
+    }
   }
 }
 </script>
