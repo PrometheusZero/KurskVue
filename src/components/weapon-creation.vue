@@ -1107,7 +1107,6 @@ export default {
       obj.ordRating = this.ordRating;
       obj.totalCost = this.totalCost;
       obj.totalWeight = this.totalWeight;
-      obj.owned = false;
       obj.owner;
 
       this.gang.weapons.push(obj);
@@ -1205,8 +1204,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-table {
-  display: inline;
-  padding: 25px;
-}
+
 </style>
