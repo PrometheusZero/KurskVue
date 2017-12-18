@@ -1,92 +1,92 @@
 <template>
   <div>
     <span>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Rank</th>
-                <th>M</th>
-                <th>WS</th>
-                <th>BS</th>
-                <th>S</th>
-                <th>T</th>
-                <th>W</th>
-                <th>I</th>
-                <th>A</th>
-                <th>Ld</th>
-                <th>Info</th>
-            </tr>
-            <tr v-for="obj in gang.characters">
-                <td>{{ obj.name }}</td>
-                <td>{{ obj.rank }}</td>
-                <td>{{ obj.m() }}</td>
-                <td>{{ obj.ws }}</td>
-                <td>{{ obj.bs }}</td>
-                <td>{{ obj.s }}</td>
-                <td>{{ obj.t }}</td>
-                <td>{{ obj.w() }}</td>
-                <td>{{ obj.i }}</td>
-                <td>{{ obj.a() }}</td>
-                <td>{{ obj.ld }}</td>
-                <td><input type="button" value="..." v-on:click="showDetails(obj)"></td>
-            </tr>
-        </table>
-      </span>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Rank</th>
+          <th>M</th>
+          <th>WS</th>
+          <th>BS</th>
+          <th>S</th>
+          <th>T</th>
+          <th>W</th>
+          <th>I</th>
+          <th>A</th>
+          <th>Ld</th>
+          <th>Info</th>
+        </tr>
+        <tr v-for="obj in gang.characters">
+          <td>{{ obj.name }}</td>
+          <td>{{ obj.rank }}</td>
+          <td>{{ obj.m() }}</td>
+          <td>{{ obj.ws }}</td>
+          <td>{{ obj.bs }}</td>
+          <td>{{ obj.s }}</td>
+          <td>{{ obj.t }}</td>
+          <td>{{ obj.w() }}</td>
+          <td>{{ obj.i }}</td>
+          <td>{{ obj.a() }}</td>
+          <td>{{ obj.ld }}</td>
+          <td><input type="button" value="..." v-on:click="showDetails(obj)"></td>
+        </tr>
+      </table>
+    </span>
+    <span>
+      <h2>{{ detail.name }}</h2>
+      <p>{{ detail.rank }}</p>
+      <table>
+        <tr>
+          <th>Stat</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>M</td>
+          <td>{{ detail.m }}</td>
+        </tr>
+        <tr>
+          <td>WS</td>
+          <td>{{ detail.ws }}</td>
+        </tr>
+        <tr>
+          <td>BS</td>
+          <td>{{ detail.bs }}</td>
+        </tr>
+        <tr>
+          <td>S</td>
+          <td>{{ detail.s }}</td>
+        </tr>
+        <tr>
+          <td>T</td>
+          <td>{{ detail.t }}</td>
+        </tr>
+        <tr>
+          <td>W</td>
+          <td>{{ detail.w }}</td>
+        </tr>
+        <tr>
+          <td>I</td>
+          <td>{{ detail.i }}</td>
+        </tr>
+        <tr>
+          <td>A</td>
+          <td>{{ detail.a }}</td>
+        </tr>
+        <tr>
+          <td>Ld</td>
+          <td>{{ detail.ld }}</td>
+        </tr>
+        <tr>
+          <td>XP</td>
+          <td>{{ detail.xp }}</td>
+        </tr>
+        <tr>
+          <td>Enc.</td>
+          <td>{{ detail.inventoryWeight }} / {{ detail.carry }}</td>
+        </tr>
+      </table>
       <span>
-          <h2>{{ detail.name }}</h2>
-            <p>{{ detail.rank }}</p>
-            <table>
-                <tr>
-                <th>Stat</th>
-                <th>Value</th>
-                </tr>
-                <tr>
-                <td>M</td>
-                <td>{{ detail.m }}</td>
-                </tr>
-                <tr>
-                <td>WS</td>
-                <td>{{ detail.ws }}</td>
-                </tr>
-                <tr>
-                <td>BS</td>
-                <td>{{ detail.bs }}</td>
-                </tr>
-                <tr>
-                <td>S</td>
-                <td>{{ detail.s }}</td>
-                </tr>
-                <tr>
-                <td>T</td>
-                <td>{{ detail.t }}</td>
-                </tr>
-                <tr>
-                <td>W</td>
-                <td>{{ detail.w }}</td>
-                </tr>
-                <tr>
-                <td>I</td>
-                <td>{{ detail.i }}</td>
-                </tr>
-                <tr>
-                <td>A</td>
-                <td>{{ detail.a }}</td>
-                </tr>
-                <tr>
-                <td>Ld</td>
-                <td>{{ detail.ld }}</td>
-                </tr>
-                <tr>
-                <td>XP</td>
-                <td>{{ detail.xp }}</td>
-                </tr>
-                <tr>
-                <td>Enc.</td>
-                <td>{{ detail.inventoryWeight }} / {{ detail.carry }}</td>
-                </tr>
-            </table>
-          <span>
-            <dl>
+        <dl>
           <dt>Armour</dt>
           <dd>{{ detail.armour }}</dd>
         </dl>
@@ -106,8 +106,14 @@
           <dt>Right Equip</dt>
           <dd>{{ detail.rightHandEquip }}</dd>
         </dl>
-          </span>
       </span>
+      <span>
+        <p>Inventory</p>
+        <ul>
+          <li v-for="item in detail.inventory">{{ item.name }}, {{ item.totalWeight }}</li>
+        </ul>
+      </span>
+    </span>
   </div>
 </template>
 

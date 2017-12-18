@@ -84,15 +84,15 @@
           <tr v-if="detail.owner">
             <td>Owner</td>
             <td>
-              <input type="button" v-bind:value="detail.name" v-on:click="unequipWeapon()">
+              <input type="button" v-bind:value="detail.owner.name" v-on:click="unequipWeapon()">
             </td>
           </tr>
           <tr v-else>
             <td>Assign</td>
             <td>
-              <select v-on:change="assignWeapon(person)"><!-- THIS DOESN'T WORK. FIGURE WAY AROUND! -->
+              <select v-on:change="assignWeapon()" v-model="assignData">
                 <option disabled value="">Select Char</option>
-                <option v-for="person in gang.characters">{{ person.name }}</option>
+                <option v-for="person in gang.characters" v-bind:value="person">{{ person.name }}</option>
               </select>
             </td>
           </tr>
@@ -124,7 +124,8 @@ export default {
         totalCost: '',
         totalWeight: '',
         owner: '',
-      }
+      },
+      assignData: ''
     }
   },
   methods: {
@@ -148,9 +149,9 @@ export default {
     unequipWeapon: function(){
       return true;
     },
-    assignWeapon: function(person){
-      console.log(person);
-      return true;
+    assignWeapon: function(){
+      this.detail.owner = this.assignData;
+      this.assignData.inventory.push(this.detail);
     }
   },
   computed: {

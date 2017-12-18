@@ -86,7 +86,7 @@ export default {
         char.inventoryWeight = function(){
                 var invWgt = 0;
                 for(let i=0;i<this.inventory.length;i++){
-                    invWgt += this.inventory[i].totalWeight();
+                    invWgt += this.inventory[i].totalWeight;
                 }
                 return invWgt;
         };
@@ -94,7 +94,7 @@ export default {
         char.inventoryValue = function(){
                 var invValue = 0;
                 for(let i=0;i<this.inventory.length;i++){
-                    invValue += this.inventory[i].totalCost();
+                    invValue += this.inventory[i].totalCost;
                 }
                 return invValue;
         };
@@ -120,6 +120,9 @@ export default {
         };
 
         this.gang.characters.push(char);
+
+        this.name = '';
+        this.rank = '';
     }
   },
   computed: {
