@@ -1107,6 +1107,7 @@ export default {
       obj.ordRating = this.ordRating;
       obj.totalCost = this.totalCost;
       obj.totalWeight = this.totalWeight;
+      obj.uniqueID = Date.now();
       obj.owner;
 
       this.gang.weapons.push(obj);

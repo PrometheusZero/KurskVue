@@ -123,6 +123,7 @@ export default {
         delay: '',
         totalCost: '',
         totalWeight: '',
+        uniqueID: 0,
         owner: '',
       },
       assignData: ''
@@ -144,14 +145,21 @@ export default {
       this.detail.delay = obj.delay,
       this.detail.totalCost = obj.totalCost,
       this.detail.totalWeight = obj.totalWeight,
+      this.detail.uniqueID = obj.uniqueID;
       this.detail.owner = obj.owner
     },
     unequipWeapon: function(){
       return true;
     },
     assignWeapon: function(){
-      this.detail.owner = this.assignData;
-      this.assignData.inventory.push(this.detail);
+      this.detail.owner = assignData;
+      
+      this.gang.weapons.forEach(element => {
+        if(element.uniqueID === this.detail.uniqueID){
+          element.owner = this.assignData;
+          this.assignData.inventory.push(element);
+        }
+      });
     }
   },
   computed: {
